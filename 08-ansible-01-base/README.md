@@ -38,6 +38,6 @@
 Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
-
-![](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_1.png)
+Запуск плейбука
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_1.png)
 
