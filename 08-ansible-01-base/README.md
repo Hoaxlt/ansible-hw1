@@ -38,6 +38,20 @@
 Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
-Запуск плейбука
+1. Запуск плейбука
 ![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_1.png)
+2. Запуск контейнеров докер
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_2.png)
+3. Запуск плейбука с окружением prod
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_3.png)
+4. Поменяли факты
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_4.png)
+5. Шифровка файлов
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_5.png)
+6. Запуск плейбука с зашифрованными файлами
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_6.png)
+7. Выбор плагина
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_7.png)
+8. Добавление локалхоста
+![Запуск плейбука](https://github.com/Hoaxlt/ansible-hw1/blob/master/08-ansible-01-base/Screenshot_8.png)
 
