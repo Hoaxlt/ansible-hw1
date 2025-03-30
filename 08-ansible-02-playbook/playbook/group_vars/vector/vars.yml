@@ -1,0 +1,4 @@
+---
+vector_version: "0.44.0"
+vector_url: "https://yum.vector.dev/stable/vector-0/x86_64/vector-0.44.0-1.x86_64.rpm"
+vector_config_path: "/etc/vector/vector.yml"
