@@ -13,3 +13,7 @@ vector:
       # ansible_user: admin
       # ansible_host: 158.160.176.28
 
+lighthouse:
+  hosts:
+    lighthouse-01:
+      ansible_connection: docker
