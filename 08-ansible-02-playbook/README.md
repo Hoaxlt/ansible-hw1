@@ -27,3 +27,134 @@
 Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---
+
+
+
+Описание плейбука: 
+
+Этот плейбук выполняет установку и настройку ClickHouse и Vector на соответствующих хостах. Он скачивает необходимые пакеты, устанавливает их, настраивает конфигурационные файлы и управляет службами.
+
+Установка и настройка ClickHouse: 
+
+Параметры:
+
+hosts: clickhouse
+become: true
+
+Хэндлеры:
+
+Start clickhouse service
+Перезапускает службу ClickHouse
+Теги: clickhouse, start service
+
+Задачи:
+
+Get clickhouse distrib
+Скачивает дистрибутивы ClickHouse для архитектуры AMD64
+Теги: clickhouse, distr
+
+Update apt cache:
+
+Обновляет кэш APT
+
+Install clickhouse packages using dpkg:
+
+Устанавливает пакеты ClickHouse с использованием dpkg
+Теги: clickhouse, distr
+Notify: Start clickhouse service
+
+Flush handlers:
+
+Выполняет все отложенные хэндлеры
+Теги: clickhouse, start service
+
+Create database:
+
+Создает базу данных logs в ClickHouse
+Теги: clickhouse, db
+
+Установка и настройка Vector:
+
+Параметры
+hosts: vector
+become: true
+
+Хэндлеры:
+
+Start vector service
+Перезапускает службу Vector
+Теги: vector, restartservice
+
+Задачи:
+
+Get vector distrib
+Скачивает дистрибутив Vector для архитектуры AMD64
+Теги: vector, distr
+
+Update apt cache:
+
+Обновляет кэш APT
+
+Install vector:
+
+Устанавливает пакет Vector с использованием dpkg
+Теги: vector, distr
+
+Deploy vector configuration:
+
+Развертывает конфигурационный файл Vector с использованием шаблона Jinja2
+Теги: vector, config
+Notify: Start vector service
+
+Flush handlers:
+
+Выполняет все отложенные хэндлеры
+Теги: vector, restart service
+
+Install lighthouse
+Установка и настройка Lighthouse:
+
+hosts: lighthouse
+become: true
+
+
+Задачи:
+
+Install dependencies
+Установка lighthouse
+Теги: lighthouse
+
+Update apt cache:
+
+Обновляет кэш APT
+with items:
+зависимости nginx git
+
+Remove default nginx virtualhost:
+
+установка виртуального хоста по умолчанию для nginx
+теги: lighthouse
+
+Upload Lighthouse virtualhost configs:
+
+загрузка конфига lighthouse
+
+теги: lighthouse
+
+Turn on Lighthouse virtualhost:
+включение virtualhost для nginx
+теги: lighthouse
+Create root directory for Lighthouse:
+создание root директории
+
+теги: lighthouse
+
+Clone Lighthouse from the repository:
+
+клонирование репозитория
+
+теги: lighthouse
+
+Nginx restart:
+старт сервиса nginx
+тэги: nginx
