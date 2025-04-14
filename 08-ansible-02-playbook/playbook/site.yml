@@ -39,105 +39,15 @@
 
 - name: Install Vector
   hosts: vector
-  become: true
-  handlers:
-    - name: Start vector service
-      ansible.builtin.service:
-        name: vector
-        state: restarted
-      tags:
-        - vector
-        - restartservice
-
-  tasks:
-    - name: Get vector distrib
-      ansible.builtin.get_url:
-        url: "https://packages.timber.io/vector/{{ vector_version }}/vector_{{ vector_version }}-1_amd64.deb"
-        dest: "/tmp/vector-{{ vector_version }}.deb"
-        mode: '0644'
-      tags:
-        - vector
-        - distr
-
-    - name: Update apt cache
-      ansible.builtin.apt:
-        update_cache: true
-
-    - name: Install vector
-      ansible.builtin.command:
-        cmd: "dpkg -i /tmp/vector-{{ vector_version }}.deb"
-      changed_when: false
-      tags:
-        - vector
-        - distr
-
-    - name: Deploy vector configuration
-      ansible.builtin.template:
-        src: templates/vector.yaml.j2
-        dest: "{{ vector_config_path }}"
-        mode: '0644'
-      notify: Start vector service
-      tags:
-        - vector
-        - config
-
-    - name: Flush handlers
-      ansible.builtin.meta: flush_handlers
-      tags:
-        - vector
-        - restart service 
+  roles:
+    - vector-role
 
 
 - name: Install Lighthouse
   hosts: lighthouse
   become: true
-  tasks:
-    - name: Install dependencies
-      apt:
-        package={{ item }}
-        state=present
-        update_cache=yes
-      with_items:
-        - nginx-full
-        - git
-      tags: lighthouse
-    - name: Remove default nginx virtualhost
-      file:
-        path: "{{ item }}"
-        state: absent
-      with_items:
-        - /etc/nginx/sites-enabled/default
-        - /etc/nginx/sites-available/default
-        - /etc/nginx/snippets/snakeoil.conf
-      tags: lighthouse
-    - name: Upload Lighthouse virtualhost configs
-      copy:
-        src: templates/lighthouse.conf
-        dest: /etc/nginx/sites-available/lighthouse.conf
-        mode: 0664
-      tags: lighthouse
-    - name: Turn on Lighthouse virtualhost
-      file:
-        src: /etc/nginx/sites-available/lighthouse.conf
-        dest: /etc/nginx/sites-enabled/lighthouse.conf
-        state: link
-      tags: lighthouse
-    - name: "Create root directory for Lighthouse"
-      file:
-        path: "/home/web/lighthouse"
-        mode: 0755
-        state: directory
-      tags: lighthouse
-    - name: "Clone Lighthouse from the repository"
-      git:
-        repo: https://github.com/VKCOM/lighthouse.git
-        dest: /home/web/lighthouse
-        version: master
-      tags: lighthouse
-    - name: Nginx restart
-      service:
-        name: nginx
-        state: restarted
-      tags: lighthouse
+  roles:
+    - lighthouse-role
+    
 
       #
